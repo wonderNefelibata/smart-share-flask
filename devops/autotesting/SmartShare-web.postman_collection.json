@@ -1,0 +1,3893 @@
+{
+	"info": {
+		"_postman_id": "02d75a43-b4be-4513-b71d-019ba0eef9bc",
+		"name": "SmartShare-web",
+		"description": "共同协作定义智享接口文档\n\n后端发送的data封装成json对象\n\n前端通过response.data.data获取后端响应的json对象",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34449334",
+		"_collection_link": "https://blue22-4172.postman.co/workspace/SmartShare-API~8a8a741d-bfa5-4f69-9210-b99cf95bb0aa/collection/34449334-02d75a43-b4be-4513-b71d-019ba0eef9bc?action=share&source=collection_link&creator=34449334"
+	},
+	"item": [
+		{
+			"name": "读者端",
+			"item": [
+				{
+					"name": "ok搜索图书馆书籍",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/reader/searchLibraryBooks?keywords=马克思",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"reader",
+								"searchLibraryBooks"
+							],
+							"query": [
+								{
+									"key": "keywords",
+									"value": "马克思",
+									"description": "搜索图书馆的书，发送请求关键词。"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "示例",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:5000/reader/searchLibraryBooks?keywords=皇帝的新装",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"reader",
+										"searchLibraryBooks"
+									],
+									"query": [
+										{
+											"key": "keywords",
+											"value": "皇帝的新装",
+											"description": "搜索图书馆的书，发送请求关键词。"
+										}
+									]
+								}
+							},
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{//响应一个书籍的对象数组\r\n    \"code\":200,\r\n    \"data\":{\r\n        \"books\":[\r\n            {\r\n                \"img\":\"\",//书的封面\r\n                \"name\":\"皇帝的新装\",//书的名字\r\n                \"isBorrow\":false//这本书是否被“我”借阅（借阅未扫码和借阅已扫码都算借阅），已借阅-true，未借阅-false\r\n            }\r\n        ]\r\n    }\r\n\r\n}"
+						}
+					]
+				},
+				{
+					"name": "ok借阅清单-待扫码",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/reader/waitToCode?userId=35235",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"reader",
+								"waitToCode"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "35235",
+									"description": "当前登陆的用户的id"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "借阅清单-待扫码",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:5000/reader/waitToCode?userId=22013",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"reader",
+										"waitToCode"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "22013"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{//注：这里给出已借阅待扫码的书籍清单\r\n\"code\":200,\r\n\"data\":{\r\n    \"books\":[\r\n        {\r\n            \"img\":\" \",//书籍封面\r\n            \"name\":\"皇帝的新装\"//书籍名称\r\n        }\r\n    ]\r\n\r\n}\r\n}"
+						}
+					]
+				},
+				{
+					"name": "ok生成借阅码",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5000/reader/produceCode?userId",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"reader",
+								"produceCode"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": null,
+									"description": "当前登录用户的id"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "生成借阅码",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:5000/reader/produceCode?userId=22013",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"reader",
+										"produceCode"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "22013"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{//这里不看数量了，直接默认一种书借阅一本，将当前用户借阅未扫码的统一生成一个二维码\r\n    \"code\":200,\r\n    \"data\":\"666\"//这是二维码图片名字\r\n}"
+						}
+					]
+				},
+				{
+					"name": "ok猜你喜欢",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/reader/like?userId=35235",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"reader",
+								"like"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "35235"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ok猜你喜欢",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost5000/reader/like?userId=22013",
+									"protocol": "https",
+									"host": [
+										"localhost5000"
+									],
+									"path": [
+										"reader",
+										"like"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "22013",
+											"description": "登录用户ID"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"code\":200,\r\n    \"data\":[\r\n        {\r\n            \"img\":\"\",//书籍封面\r\n            \"name\":\"皇帝的新装\"//书籍名称\r\n        }\r\n    ]\r\n}"
+						}
+					]
+				},
+				{
+					"name": "ok热门借阅",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/reader/hotBorrow",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"reader",
+								"hotBorrow"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "热门借阅",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost5000/reader/hotBorrow",
+									"protocol": "https",
+									"host": [
+										"localhost5000"
+									],
+									"path": [
+										"reader",
+										"hotBorrow"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"code\":200,\r\n    \"data\":[\r\n        {\r\n            \"img\":\"\",\r\n            \"name\":\"皇帝的新装\"\r\n        }\r\n    ]\r\n}"
+						}
+					]
+				},
+				{
+					"name": "ok搜索分享书籍",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/reader/searchShareBooks?keywords=马克思",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"reader",
+								"searchShareBooks"
+							],
+							"query": [
+								{
+									"key": "keywords",
+									"value": "马克思",
+									"description": "搜索关键词"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "搜索分享书籍",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:5000/reader/searchShareBooks?keywords=皇帝的新装",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"reader",
+										"searchShareBooks"
+									],
+									"query": [
+										{
+											"key": "keywords",
+											"value": "皇帝的新装"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{//响应一个对象数组\r\n    \"code\":200,\r\n    \"data\":[\r\n        {\r\n            \"img\":\"\",//书籍封面\r\n            \"name\":\"皇帝的新装\",//书籍名称\r\n            \"isBorrow\":true//已借阅-true，未借阅-false\r\n        }\r\n    ]\r\n}"
+						}
+					]
+				},
+				{
+					"name": "ok信息公告展示",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/reader/notice",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"reader",
+								"notice"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ok信息公告展示",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:5000/reader/notice",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"reader",
+										"notice"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"code\":200,\r\n    \"data\":{\r\n        \"noticeArray\":[//传一个对象数组，对象是公告信息\r\n            {\"title\":\"中南大学关于放假的通知\",//公告的title\r\n            \"content\":\"中南大学计划于5月1-5月5日放假blabla\"//公告点进入以后的具体内容\r\n            },\r\n            {\r\n            \"title\":\"中南大学关于放假的通知\",\r\n            \"content\":\"中南大学计划于5月1-5月5日放假blabla\"\r\n            }\r\n        ]\r\n    }\r\n}"
+						}
+					]
+				},
+				{
+					"name": "ok点击”借阅“进行图书馆书籍借阅",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/reader/borrowClick?bookName=恩格斯著作选&userId=35235",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"reader",
+								"borrowClick"
+							],
+							"query": [
+								{
+									"key": "bookName",
+									"value": "恩格斯著作选",
+									"description": "书名"
+								},
+								{
+									"key": "userId",
+									"value": "35235",
+									"description": "当前登录用户的ID"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "点击”借阅“进行书籍借阅(失败）",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:5000/reader/borrowClick?bookName=皇帝的新装&userId=22013",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"reader",
+										"borrowClick"
+									],
+									"query": [
+										{
+											"key": "bookName",
+											"value": "皇帝的新装"
+										},
+										{
+											"key": "userId",
+											"value": "22013"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{//注：点击借阅进入待扫码清单\r\n    \"code\":200,\r\n    \"data\":{\r\n        \"result\": \"借阅成功！\",//借阅成功\r\n        \"content\":\" \"\r\n    },\r\n    \"data\":{\r\n        \"result\":\"借阅失败！\",//借阅数量超过规定数量_已借阅已扫码和已借阅待扫码都算借阅\r\n        \"content\":\"学生借阅书籍不得超过六本！\"\r\n    }\r\n}"
+						}
+					]
+				},
+				{
+					"name": "ok分享图书",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/reader/toShare?userId=35235&name=经济学原理（第7版）：宏观经济学分册&author=(美)曼昆（N.Gregory Mankiw）&output=北京大学出版社&date=2015-05-19&img=D:\\library cover\\SZ-2.jpg&type&img&price",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"reader",
+								"toShare"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "35235"
+								},
+								{
+									"key": "name",
+									"value": "经济学原理（第7版）：宏观经济学分册"
+								},
+								{
+									"key": "author",
+									"value": "(美)曼昆（N.Gregory Mankiw）"
+								},
+								{
+									"key": "output",
+									"value": "北京大学出版社"
+								},
+								{
+									"key": "date",
+									"value": "2015-05-19"
+								},
+								{
+									"key": "img",
+									"value": "D:\\library cover\\SZ-2.jpg"
+								},
+								{
+									"key": "type",
+									"value": null
+								},
+								{
+									"key": "img",
+									"value": null
+								},
+								{
+									"key": "price",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "分享图书",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/reader/toShare?userId=22013&name=西游记&author=吴承恩&output=人民文学出版社&date=1983/2/3&type1=['自然科学类','生物科学‘]&img=111&code=24253464562343&price=2&type2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"reader",
+										"toShare"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "22013",
+											"description": "当前登录用户的ID"
+										},
+										{
+											"key": "name",
+											"value": "西游记",
+											"description": "书籍名称"
+										},
+										{
+											"key": "author",
+											"value": "吴承恩",
+											"description": "书籍作者"
+										},
+										{
+											"key": "output",
+											"value": "人民文学出版社",
+											"description": "出版社"
+										},
+										{
+											"key": "date",
+											"value": "1983/2/3",
+											"description": "出版日期"
+										},
+										{
+											"key": "type1",
+											"value": "['自然科学类','生物科学‘]",
+											"description": "书籍类型 前端提供数组，第一个是大类，第二个是小类"
+										},
+										{
+											"key": "img",
+											"value": "111",
+											"description": "书籍封面"
+										},
+										{
+											"key": "code",
+											"value": "24253464562343",
+											"description": "书籍码"
+										},
+										{
+											"key": "price",
+											"value": "2",
+											"description": "借阅需要付费"
+										},
+										{
+											"key": "type2",
+											"value": null
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"code\":200,\r\n    \"data\":\"分享成功！\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "ok进行分享图书借阅",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5000/reader/borrowShare?name&userId",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"reader",
+								"borrowShare"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": null,
+									"description": "书籍名称"
+								},
+								{
+									"key": "userId",
+									"value": null,
+									"description": "当前登录用户的ID"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "进行分享图书借阅",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:5000/reader/borrowShare?name&userId",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"reader",
+										"borrowShare"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": null
+										},
+										{
+											"key": "userId",
+											"value": null
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"code\":200,\r\n     \"data\":{\r\n        \"result\": \"借阅成功！支付xx元!\",//借阅成功\r\n        \"content\":\" \"\r\n    },\r\n    \"data\":{\r\n        \"result\":\"借阅失败！\",//借阅数量超过规定数量_已借阅已扫码和已借阅待扫码都算借阅\r\n        \"content\":\"学生借阅书籍不得超过六本！\"\r\n    }\r\n}"
+						}
+					]
+				},
+				{
+					"name": "ok获得图书馆所有书籍",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/reader/getLibraryAll?userId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"reader",
+								"getLibraryAll"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "new获得图书馆所有书籍",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/reader/getLibraryAll?userId=24123",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"reader",
+										"getLibraryAll"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "24123"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{//对象数组\r\n    \"data\":[\r\n        {\"img\":\"封面路径\",\r\n        \"name\":\"书籍名称\",\r\n        \"isBorrow\":false//这本书是否被“我”借阅（借阅未扫码和借阅已扫码都算借阅），已借阅-true，未借阅-false\r\n        }\r\n    ]\r\n}"
+						}
+					]
+				},
+				{
+					"name": "ok获得所有分享图书",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/reader/getAllShare?userId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"reader",
+								"getAllShare"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "new获得所有分享图书",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/reader/getAllShare?userId",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"reader",
+										"getAllShare"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": null
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{//注意：不展示当前userId的分享图书\r\n    \"data\":[\r\n        {\r\n            \"img\":\"\",\r\n            \"name\":\"\",\r\n            \"isBorrow\":false//这本书是否被“我”借阅（借阅未扫码和借阅已扫码都算借阅），已借阅-true，未借阅-false\r\n        }\r\n    ]\r\n}"
+						}
+					]
+				},
+				{
+					"name": "ok个人中心-我的借阅-历史借阅",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost5000/reader/historyBorrow?userId",
+							"protocol": "https",
+							"host": [
+								"localhost5000"
+							],
+							"path": [
+								"reader",
+								"historyBorrow"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": null,
+									"description": "当前登录用户ID"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "个人中心-我的借阅-历史借阅",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost5000/reader/historyBorrow?userId",
+									"protocol": "https",
+									"host": [
+										"localhost5000"
+									],
+									"path": [
+										"reader",
+										"historyBorrow"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": null,
+											"description": "当前登录用户ID"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"code\":200,\r\n    \"data\":[\r\n        {\r\n            \"name\":\"西游记\",//书籍名称\r\n            \"author\":\"吴承恩\",//书籍作者\r\n            \"output\":\" \",//出版社\r\n            \"num\":\"1\",//借阅数量\r\n            \"dateBorrow\":\"2024/2/3\",//借阅时间\r\n            \"dateCall\":\"2024/3/2\",//归还时间\r\n            \"status\":\"已归还\"//状态\r\n        }\r\n    ]\r\n}"
+						}
+					]
+				},
+				{
+					"name": "ok个人中心-我的借阅-未归还书籍展示",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost5000/reader/myborrow/notCall?userId",
+							"protocol": "https",
+							"host": [
+								"localhost5000"
+							],
+							"path": [
+								"reader",
+								"myborrow",
+								"notCall"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": null,
+									"description": "当前登陆用户的ID"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "个人中心-我的借阅-未归还书籍展示",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/reader/myborrow/notCall?userId=22013",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"reader",
+										"myborrow",
+										"notCall"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "22013",
+											"description": "当前登陆用户的ID"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{//返回”我“的已借阅未扫码和已借阅已扫码  对象数组\r\n    \"code\":200,\r\n    \"data\":[\r\n        {\r\n            \"name\":\"西游记\",//书籍名称\r\n            \"author\":\"吴承恩\",//书籍作者\r\n            \"output\":\" \",//出版社\r\n            \"num\":\"1\",//借阅数量\r\n            \"dateBorrow\":\"2024/2/3\",//借阅时间\r\n            \"status\":\"已扫码/未扫码\"//状态\r\n        }\r\n    ]\r\n}"
+						}
+					]
+				},
+				{
+					"name": "ok个人中心-我的借阅-去归还",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost5000/reader/toReturn?userId=24123&bookName=&returnTime",
+							"protocol": "https",
+							"host": [
+								"localhost5000"
+							],
+							"path": [
+								"reader",
+								"toReturn"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "24123"
+								},
+								{
+									"key": "bookName",
+									"value": ""
+								},
+								{
+									"key": "returnTime",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "个人中心-我的借阅-去归还",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost5000/reader/toReturn?userId=24123&bookName=西游记",
+									"protocol": "https",
+									"host": [
+										"localhost5000"
+									],
+									"path": [
+										"reader",
+										"toReturn"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "24123"
+										},
+										{
+											"key": "bookName",
+											"value": "西游记"
+										},
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"data\": \"归还成功!\",\n    \"data\":\"归还成功！您已预期xx天，罚款xx元！\"\n}"
+						}
+					]
+				},
+				{
+					"name": "ok个人中心-我的分享",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost5000/reader/myShare?userId",
+							"protocol": "https",
+							"host": [
+								"localhost5000"
+							],
+							"path": [
+								"reader",
+								"myShare"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": null,
+									"description": "当前登录用户ID"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "个人中心-我的分享",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost5000/reader/myShare?userId",
+									"protocol": "https",
+									"host": [
+										"localhost5000"
+									],
+									"path": [
+										"reader",
+										"myShare"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": null,
+											"description": "当前登录用户ID"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"code\":200,\r\n    \"data\":[\r\n        {\r\n            \"name\":\"西游记\",//书籍名称\r\n            \"author\":\"吴承恩\",//书籍作者\r\n            \"output\":\" \",//出版社\r\n            \"dateShare\":\"2024/2/3\",//分享时间\r\n            \"status\":\"已归还/未归还\",//状态\r\n            \"money\":\"23\"//收益金额\r\n        }\r\n    ]\r\n}"
+						}
+					]
+				},
+				{
+					"name": "ok个人中心-我的分享-搜索",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost5000/reader/myShareSearch?userId&keywords",
+							"protocol": "https",
+							"host": [
+								"localhost5000"
+							],
+							"path": [
+								"reader",
+								"myShareSearch"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": null,
+									"description": "当前登录用户的ID"
+								},
+								{
+									"key": "keywords",
+									"value": null,
+									"description": "关键词"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "个人中心-我的分享-搜索",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/reader/myShareSearch?userId=22013&keywords=西游记",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"reader",
+										"myShareSearch"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "22013",
+											"description": "当前登录用户的ID"
+										},
+										{
+											"key": "keywords",
+											"value": "西游记",
+											"description": "关键词"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"code\":200,\r\n    \"data\":[\r\n        {\r\n            \"name\":\"西游记\",//书籍名称\r\n            \"author\":\"吴承恩\",//书籍作者\r\n            \"output\":\" \",//出版社\r\n            \"dateShare\":\"2024/2/3\",//分享时间\r\n            \"status\":\"已归还/未归还\",//状态\r\n            \"money\":\"23\"//收益金额\r\n        }\r\n    ]\r\n}"
+						}
+					]
+				},
+				{
+					"name": "ok个人中心-我的缴费-历史缴费",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost5000/reader/myCostHistory?userId",
+							"protocol": "https",
+							"host": [
+								"localhost5000"
+							],
+							"path": [
+								"reader",
+								"myCostHistory"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": null,
+									"description": "当前登录用户ID"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "个人中心-我的缴费",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost5000/reader/myCostHistory?userId",
+									"protocol": "https",
+									"host": [
+										"localhost5000"
+									],
+									"path": [
+										"reader",
+										"myCostHistory"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": null,
+											"description": "当前登录用户ID"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n   \"code\":200,\r\n   \"data\":[\r\n    {\r\n        \"type\":\"西游记-超时罚款\",//缴费类型——超时罚款/借阅分享书籍\r\n        \"time\":\"2024/2/3\",//缴费时间\r\n        \"money\":\"2\"//缴费金额\r\n    }\r\n   ]\r\n}"
+						}
+					]
+				},
+				{
+					"name": "ok个人中心-我的缴费-待缴费",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost5000/reader/myCostWait?userId",
+							"protocol": "https",
+							"host": [
+								"localhost5000"
+							],
+							"path": [
+								"reader",
+								"myCostWait"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "个人中心-我的缴费-待缴费",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost5000/reader/myCostWait?userId=22013",
+									"protocol": "https",
+									"host": [
+										"localhost5000"
+									],
+									"path": [
+										"reader",
+										"myCostWait"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "22013"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"code\":200,\r\n    \"data\":[\r\n        {\r\n            \"type\":\"西游记-超时缴费\",//缴费类型\r\n            \"money\":\"2\"//缴费金额\r\n        }\r\n    ]\r\n}"
+						}
+					]
+				},
+				{
+					"name": "ok个人中心-我的缴费-去缴费",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost5000/reader/toCost?userId&type",
+							"protocol": "https",
+							"host": [
+								"localhost5000"
+							],
+							"path": [
+								"reader",
+								"toCost"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": null,
+									"description": "当前登录用户ID"
+								},
+								{
+									"key": "type",
+									"value": null,
+									"description": "缴费项目名称"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "个人中心-我的缴费-去缴费",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost5000/reader/toCost?userId=22013&type=西游记-超时缴费",
+									"protocol": "https",
+									"host": [
+										"localhost5000"
+									],
+									"path": [
+										"reader",
+										"toCost"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "22013",
+											"description": "当前登录用户ID"
+										},
+										{
+											"key": "type",
+											"value": "西游记-超时缴费",
+											"description": "缴费项目名称"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"code\":200,\r\n    \"data\":\"缴费成功!\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "ok个人中心-个人设置-资料修改",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost5000/reader/updateUserMsg?userId&phone&email&password",
+							"protocol": "https",
+							"host": [
+								"localhost5000"
+							],
+							"path": [
+								"reader",
+								"updateUserMsg"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": null,
+									"description": "当前用户ID"
+								},
+								{
+									"key": "phone",
+									"value": null
+								},
+								{
+									"key": "email",
+									"value": null
+								},
+								{
+									"key": "password",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "个人中心-个人设置-资料修改",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost5000/reader/updateUserMsg?userId&phone&email&password",
+									"protocol": "https",
+									"host": [
+										"localhost5000"
+									],
+									"path": [
+										"reader",
+										"updateUserMsg"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": null,
+											"description": "当前用户ID"
+										},
+										{
+											"key": "phone",
+											"value": null
+										},
+										{
+											"key": "email",
+											"value": null
+										},
+										{
+											"key": "password",
+											"value": null
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"code\":200,\r\n    \"data\":{\r\n        \"type\":\"修改成功！\",\r\n        \"content\":\"\"\r\n    },\r\n     \"data\":{\r\n        \"type\":\"修改失败！\",\r\n        \"content\":\"邮箱格式错误\"\r\n    }\r\n}"
+						}
+					]
+				},
+				{
+					"name": "ok获取用户信息",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost5000/userMsg?userId=",
+							"protocol": "https",
+							"host": [
+								"localhost5000"
+							],
+							"path": [
+								"userMsg"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "",
+									"description": "当前用户ID"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "获取用户信息",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost5000/userMsg?userId=22013",
+									"protocol": "https",
+									"host": [
+										"localhost5000"
+									],
+									"path": [
+										"userMsg"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "22013",
+											"description": "当前用户ID"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"code\":200,\r\n    \"data\":{\r\n        \"username\":\"悦悦\",\r\n        \"userId\":\"学工号\",\r\n        \"email\":\"22@qq.com\",\r\n        \"type\":\"学生\",\r\n        \"money\":\"22\"//账户余额\r\n    }\r\n}"
+						}
+					]
+				},
+				{
+					"name": "http://localhost:5000/reader/toShare?userId=24123&name=西游记&author=吴承恩&output=人民文学出版社&date=1983/2/3&type1=自然科学类&img=111&code=24253464562343&price=2&type2=自然科学",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/reader/toShare?userId=24123&name=西游记&author=吴承恩&output=人民文学出版社&date=1983/2/3&type1=自然科学类&img=111&code=24253464562343&price=2&type2=自然科学",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"reader",
+								"toShare"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "24123",
+									"description": "当前登录用户的ID"
+								},
+								{
+									"key": "name",
+									"value": "西游记",
+									"description": "书籍名称"
+								},
+								{
+									"key": "author",
+									"value": "吴承恩",
+									"description": "书籍作者"
+								},
+								{
+									"key": "output",
+									"value": "人民文学出版社",
+									"description": "出版社"
+								},
+								{
+									"key": "date",
+									"value": "1983/2/3",
+									"description": "出版日期"
+								},
+								{
+									"key": "type1",
+									"value": "自然科学类",
+									"description": "大类"
+								},
+								{
+									"key": "img",
+									"value": "111",
+									"description": "书籍封面"
+								},
+								{
+									"key": "code",
+									"value": "24253464562343",
+									"description": "书籍码"
+								},
+								{
+									"key": "price",
+									"value": "2",
+									"description": "借阅需要付费"
+								},
+								{
+									"key": "type2",
+									"value": "自然科学",
+									"description": "小类"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "这里写读者端的接口"
+		},
+		{
+			"name": "管理员端",
+			"item": [
+				{
+					"name": "获取图书列表",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost5000/admin/getBook",
+							"protocol": "https",
+							"host": [
+								"localhost5000"
+							],
+							"path": [
+								"admin",
+								"getBook"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "获取图书列表",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost5000/admin/getBook",
+									"protocol": "https",
+									"host": [
+										"localhost5000"
+									],
+									"path": [
+										"admin",
+										"getBook"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"book\": [\n        {\n            \"name\": \"xxx\",\n            \"writer\": \"xxx\",\n            \"press\": \"xx出版社\",\n            \"publishDate\": \"yyyy/mm/dd\",\n            \"code\":\"/src/xxx.jpg\",\n            \"type\":\"fiction\",\n            \"source\":\"xxxx\",\n            \"stock\":\"xx本\"\n        },\n        {\n            \"name\": \"xxx\",\n            \"writer\": \"xxx\",\n            \"press\": \"xx出版社\",\n            \"publishDate\": \"yyyy/mm/dd\",\n            \"code\":\"/src/xxx.jpg\",\n            \"type\":\"fiction\",\n            \"source\":\"xxxx\",\n            \"stock\":\"xx本\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "图书管理-新增",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost5000/admin/book/add?admin_id&name&writer&press&code&date&type",
+							"protocol": "https",
+							"host": [
+								"localhost5000"
+							],
+							"path": [
+								"admin",
+								"book",
+								"add"
+							],
+							"query": [
+								{
+									"key": "admin_id",
+									"value": null,
+									"description": "管理员id"
+								},
+								{
+									"key": "name",
+									"value": null,
+									"description": "书本名称"
+								},
+								{
+									"key": "writer",
+									"value": null,
+									"description": "作者"
+								},
+								{
+									"key": "press",
+									"value": null,
+									"description": "出版社"
+								},
+								{
+									"key": "code",
+									"value": null,
+									"description": "条形码"
+								},
+								{
+									"key": "date",
+									"value": null,
+									"description": "出版日期"
+								},
+								{
+									"key": "type",
+									"value": null,
+									"description": "类型"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "图书管理-新增",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/admin/book/add?admin_id=27&picture=B-7&name=论自由&writer=斯图亚特·密尔&press=商务印刷馆&code=9787100103163&date=2009-01-01&type=B&stock=3&price=40.00",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"book",
+										"add"
+									],
+									"query": [
+										{
+											"key": "admin_id",
+											"value": "27",
+											"description": "管理员id"
+										},
+										{
+											"key": "picture",
+											"value": "B-7",
+											"description": "图书封面"
+										},
+										{
+											"key": "name",
+											"value": "论自由",
+											"description": "图书名字"
+										},
+										{
+											"key": "writer",
+											"value": "斯图亚特·密尔",
+											"description": "作者"
+										},
+										{
+											"key": "press",
+											"value": "商务印刷馆",
+											"description": "出版社"
+										},
+										{
+											"key": "code",
+											"value": "9787100103163",
+											"description": "条形码"
+										},
+										{
+											"key": "date",
+											"value": "2009-01-01",
+											"description": "出版日期"
+										},
+										{
+											"key": "type",
+											"value": "B",
+											"description": "类型"
+										},
+										{
+											"key": "stock",
+											"value": "3",
+											"description": "库存"
+										},
+										{
+											"key": "price",
+											"value": "40.00",
+											"description": "价格"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"data\": \"操作成功！\"\n}"
+						}
+					]
+				},
+				{
+					"name": "图书管理-删除",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/admin/book/del?admin_id&book_id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"admin",
+								"book",
+								"del"
+							],
+							"query": [
+								{
+									"key": "admin_id",
+									"value": null,
+									"description": "管理员id"
+								},
+								{
+									"key": "book_id",
+									"value": null,
+									"description": "用户id"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "图书管理-删除",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/admin/book/del?admin_id=27&type=A&book_id=7777777777777",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"book",
+										"del"
+									],
+									"query": [
+										{
+											"key": "admin_id",
+											"value": "27",
+											"description": "管理员id"
+										},
+										{
+											"key": "type",
+											"value": "A",
+											"description": "书籍类型"
+										},
+										{
+											"key": "book_id",
+											"value": "7777777777777",
+											"description": "书籍条形码"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"code\":200,\r\n    \"data\":\"操作成功！\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "图书管理-编辑-保存",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/admin/book/edit?admin_id&book_id&name&press&writer&date&code&type&source&inventory",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"admin",
+								"book",
+								"edit"
+							],
+							"query": [
+								{
+									"key": "admin_id",
+									"value": null,
+									"description": "管理员id"
+								},
+								{
+									"key": "book_id",
+									"value": null,
+									"description": "书本id"
+								},
+								{
+									"key": "name",
+									"value": null,
+									"description": "书本名称"
+								},
+								{
+									"key": "press",
+									"value": null,
+									"description": "出版社"
+								},
+								{
+									"key": "writer",
+									"value": null,
+									"description": "作者"
+								},
+								{
+									"key": "date",
+									"value": null,
+									"description": "出版日期"
+								},
+								{
+									"key": "code",
+									"value": null,
+									"description": "条形码"
+								},
+								{
+									"key": "type",
+									"value": null,
+									"description": "类型"
+								},
+								{
+									"key": "source",
+									"value": null,
+									"description": "书籍来源"
+								},
+								{
+									"key": "inventory",
+									"value": null,
+									"description": "库存"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "图书管理-编辑-保存",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/admin/book/edit?admin_id=27&picture=C-22&name=你&writer=韵&press=悦&code=7777777777777&date=2004-4-14&type=C&source=图书馆&stock=1&price=35",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"book",
+										"edit"
+									],
+									"query": [
+										{
+											"key": "admin_id",
+											"value": "27",
+											"description": "管理员id"
+										},
+										{
+											"key": "picture",
+											"value": "C-22",
+											"description": "书籍封面"
+										},
+										{
+											"key": "name",
+											"value": "你",
+											"description": "书本名称"
+										},
+										{
+											"key": "writer",
+											"value": "韵",
+											"description": "作者"
+										},
+										{
+											"key": "press",
+											"value": "悦",
+											"description": "出版社"
+										},
+										{
+											"key": "code",
+											"value": "7777777777777",
+											"description": "条形码"
+										},
+										{
+											"key": "date",
+											"value": "2004-4-14",
+											"description": "出版日期"
+										},
+										{
+											"key": "type",
+											"value": "C",
+											"description": "类型"
+										},
+										{
+											"key": "source",
+											"value": "图书馆",
+											"description": "书籍来源"
+										},
+										{
+											"key": "stock",
+											"value": "1",
+											"description": "库存"
+										},
+										{
+											"key": "price",
+											"value": "35",
+											"description": "书籍价格"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"code\":200,\r\n    \"data\":\"操作成功！\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "图书管理-查询",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/admin/book/search?admin_id&keywords",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"admin",
+								"book",
+								"search"
+							],
+							"query": [
+								{
+									"key": "admin_id",
+									"value": null
+								},
+								{
+									"key": "keywords",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "图书管理-查询",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/admin/book/search?admin_id&keywords",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"book",
+										"search"
+									],
+									"query": [
+										{
+											"key": "admin_id",
+											"value": null
+										},
+										{
+											"key": "keywords",
+											"value": null
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"book\": [\n        {\n            \"name\": \"xxx\",\n            \"writer\": \"xxx\",\n            \"press\": \"xx出版社\",\n            \"publishDate\": \"yyyy/mm/dd\",\n            \"code\": \"/src/xxx.jpg\",\n            \"type\": \"fiction\",\n            \"source\": \"xxxx\",\n            \"stock\": \"xx本\"\n        },\n        {\n            \"name\": \"xxx\",\n            \"writer\": \"xxx\",\n            \"press\": \"xx出版社\",\n            \"publishDate\": \"yyyy/mm/dd\",\n            \"code\": \"/src/xxx.jpg\",\n            \"type\": \"fiction\",\n            \"source\": \"xxxx\",\n            \"stock\": \"xx本\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "new扫一扫借书",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/manager/scan",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"manager",
+								"scan"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "扫一扫借书",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/manager/scan",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"manager",
+										"scan"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"code\":200,\r\n    \"data\":\"扫描成功\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "获取用户列表",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/admin/getBook",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"admin",
+								"getBook"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "获取用户列表",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/admin/getReader",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"getReader"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"reader\": [\n        {\n            \"reader_id\": \"xxx\",\n            \"number\": \"xxx\",\n            \"phone\": \"1343468676\",\n            \"email\": \"xxx@xxx\",\n            \"identity\":\"0/1\",\n            \"balance\":\"xxx\"\n            \n        },\n        {\n            \"reader_id\": \"xxx\",\n            \"number\": \"xxx\",\n            \"phone\": \"1343468676\",\n            \"email\": \"xxx@xxx\",\n            \"identity\":\"0/1\",\n            \"balance\":\"xxx\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "用户管理-新增",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/admin/reader/add?admin_id&reader_id&number&phone&email&identity&balance",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"admin",
+								"reader",
+								"add"
+							],
+							"query": [
+								{
+									"key": "admin_id",
+									"value": null,
+									"description": "管理员id"
+								},
+								{
+									"key": "reader_id",
+									"value": null,
+									"description": "用户id"
+								},
+								{
+									"key": "number",
+									"value": null,
+									"description": "学工号"
+								},
+								{
+									"key": "phone",
+									"value": null,
+									"description": "电话"
+								},
+								{
+									"key": "email",
+									"value": null,
+									"description": "邮箱"
+								},
+								{
+									"key": "identity",
+									"value": null,
+									"description": "身份（老师学生）"
+								},
+								{
+									"key": "balance",
+									"value": null,
+									"description": "余额"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "用户管理-新增用户",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/admin/reader/add?admin_id=27&reader_id=33333&name=蔡雅韵&number=8209220531&phone=18874109893&email=8209220531@qq.com&identity=学生&balance=50",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"reader",
+										"add"
+									],
+									"query": [
+										{
+											"key": "admin_id",
+											"value": "27",
+											"description": "管理员id"
+										},
+										{
+											"key": "reader_id",
+											"value": "33333",
+											"description": "用户id"
+										},
+										{
+											"key": "name",
+											"value": "蔡雅韵",
+											"description": "用户名字"
+										},
+										{
+											"key": "number",
+											"value": "8209220531",
+											"description": "学工号"
+										},
+										{
+											"key": "phone",
+											"value": "18874109893",
+											"description": "电话"
+										},
+										{
+											"key": "email",
+											"value": "8209220531@qq.com",
+											"description": "邮箱"
+										},
+										{
+											"key": "identity",
+											"value": "学生",
+											"description": "身份"
+										},
+										{
+											"key": "balance",
+											"value": "50",
+											"description": "余额"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"data\": \"操作成功！\"\n}"
+						}
+					]
+				},
+				{
+					"name": "用户管理-删除",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/admin/reader/del?admin_id&reader_id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"admin",
+								"reader",
+								"del"
+							],
+							"query": [
+								{
+									"key": "admin_id",
+									"value": null,
+									"description": "管理员id"
+								},
+								{
+									"key": "reader_id",
+									"value": null,
+									"description": "用户id"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "用户管理-删除用户",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/admin/reader/del?admin_id=27&reader_id=33333",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"reader",
+										"del"
+									],
+									"query": [
+										{
+											"key": "admin_id",
+											"value": "27",
+											"description": "管理员id"
+										},
+										{
+											"key": "reader_id",
+											"value": "33333",
+											"description": "用户id"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"code\":200,\r\n    \"data\":\"操作成功！\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "用户管理-编辑-设置管理员",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/admin/reader/setAdmin?admin_id&reader_id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"admin",
+								"reader",
+								"setAdmin"
+							],
+							"query": [
+								{
+									"key": "admin_id",
+									"value": null,
+									"description": "管理员id"
+								},
+								{
+									"key": "reader_id",
+									"value": null,
+									"description": "用户id"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "用户管理-设置管理员",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/admin/reader/setAdmin?admin_id=27&reader_id=24123",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"reader",
+										"setAdmin"
+									],
+									"query": [
+										{
+											"key": "admin_id",
+											"value": "27",
+											"description": "管理员id"
+										},
+										{
+											"key": "reader_id",
+											"value": "24123",
+											"description": "用户id"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"data\": \"操作成功！\"\n}"
+						}
+					]
+				},
+				{
+					"name": "用户管理-查询",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/admin/reader/search?admin_id&keywords",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"admin",
+								"reader",
+								"search"
+							],
+							"query": [
+								{
+									"key": "admin_id",
+									"value": null
+								},
+								{
+									"key": "keywords",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "用户管理-查询",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/admin/reader/search?admin_id=27&keywords=马",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"reader",
+										"search"
+									],
+									"query": [
+										{
+											"key": "admin_id",
+											"value": "27"
+										},
+										{
+											"key": "keywords",
+											"value": "马",
+											"description": "关键字查询（用户名、学工号、电话、邮箱等）"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"reader\": [\n        {\n            \"reader_id\": \"xxx\",\n            \"number\": \"xxx\",\n            \"phone\": \"1343468676\",\n            \"email\": \"xxx@xxx\",\n            \"identity\":\"0/1\",\n            \"balance\":\"xxx\"\n            \n        },\n        {\n            \"reader_id\": \"xxx\",\n            \"number\": \"xxx\",\n            \"phone\": \"1343468676\",\n            \"email\": \"xxx@xxx\",\n            \"identity\":\"0/1\",\n            \"balance\":\"xxx\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "获取公告列表",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/admin/getAnnouncement",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"admin",
+								"getAnnouncement"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "获取公告列表",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/admin/getAnnouncement",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"getAnnouncement"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"data\": [\n        {\n            \"create_time\": \"Mon, 01 Apr 2024 00:00:00 GMT\",\n            \"info_id\": 1,\n            \"information\": \"\\r\\n我们遗憾地通知您，由于违反了图书馆的借阅规则，您的账户已被采取了以下限制措施：\\r\\n违规行为：逾期未归还图书、损坏图书\\r\\n处罚措施：账户借阅权限被暂停、罚款等\\r\\n处罚期限：2024.4.1 至 2024.4.7\\r\\n我们重视每一位用户的良好借阅体验，并期望所有用户遵守图书馆的规定。请您理解，这些措施是为了维护图书馆的秩序和其他用户的权益。\\r\\n若您对此次处罚有异议，或希望了解更多信息，请联系管理员。我们愿意倾听您的情况，并提供必要的帮助。\\r\\n\",\n            \"public_time\": \"Thu, 11 Apr 2024 00:00:00 GMT\",\n            \"status\": \"已发布\",\n            \"title\": \"违规处罚通知 - 您的账户已被限制\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "公告管理-新增",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost5000/admin/announcement/add?title&content&publish",
+							"protocol": "https",
+							"host": [
+								"localhost5000"
+							],
+							"path": [
+								"admin",
+								"announcement",
+								"add"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": null,
+									"description": "标题"
+								},
+								{
+									"key": "content",
+									"value": null,
+									"description": "内容"
+								},
+								{
+									"key": "publish",
+									"value": null,
+									"description": "是否发布"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "公告管理-新增",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/admin/announcement/add?admin_id=27&title=你好&content=我好，大家好&publish=发布",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"announcement",
+										"add"
+									],
+									"query": [
+										{
+											"key": "admin_id",
+											"value": "27",
+											"description": "管路员id"
+										},
+										{
+											"key": "title",
+											"value": "你好",
+											"description": "标题"
+										},
+										{
+											"key": "content",
+											"value": "我好，大家好",
+											"description": "内容"
+										},
+										{
+											"key": "publish",
+											"value": "发布",
+											"description": "是否发布"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"data\": 5    //这个是返回给前端的info_id,前端要放到公告表里，然后在公告编辑的时候将相应的info_id发给后端\n}"
+						}
+					]
+				},
+				{
+					"name": "公告管理-删除",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/admin/announcement/del?admin_id&announcement_id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"admin",
+								"announcement",
+								"del"
+							],
+							"query": [
+								{
+									"key": "admin_id",
+									"value": null,
+									"description": "管理员id"
+								},
+								{
+									"key": "announcement_id",
+									"value": null,
+									"description": "公告id"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "公告管理-删除",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/admin/announcement/del?admin_id=27&announcement_id=5",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"announcement",
+										"del"
+									],
+									"query": [
+										{
+											"key": "admin_id",
+											"value": "27",
+											"description": "管理员id"
+										},
+										{
+											"key": "announcement_id",
+											"value": "5",
+											"description": "公告id"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"code\":200,\r\n    \"data\":{\r\n        \"msg\":\"操作成功！\"\r\n    }\r\n}"
+						}
+					]
+				},
+				{
+					"name": "公告管理-编辑",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/admin/announcement/edit?admin_id&announcement_id&content",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"admin",
+								"announcement",
+								"edit"
+							],
+							"query": [
+								{
+									"key": "admin_id",
+									"value": null,
+									"description": "管理员id"
+								},
+								{
+									"key": "announcement_id",
+									"value": null,
+									"description": "公告id"
+								},
+								{
+									"key": "content",
+									"value": null,
+									"description": "内容"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "公告管理-编辑",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/admin/announcement/edit?admin_id=27&announcement_id=5&title=你不好&content=我不好，大家都不好&publish=不发布",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"announcement",
+										"edit"
+									],
+									"query": [
+										{
+											"key": "admin_id",
+											"value": "27",
+											"description": "管理员id"
+										},
+										{
+											"key": "announcement_id",
+											"value": "5",
+											"description": "公告id"
+										},
+										{
+											"key": "title",
+											"value": "你不好",
+											"description": "标题"
+										},
+										{
+											"key": "content",
+											"value": "我不好，大家都不好",
+											"description": "内容"
+										},
+										{
+											"key": "publish",
+											"value": "不发布",
+											"description": "是否发布"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"data\": \"操作成功！\"\n}"
+						}
+					]
+				},
+				{
+					"name": "公告管理-查询",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/admin/announcement/search?admin_id&keywords",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"admin",
+								"announcement",
+								"search"
+							],
+							"query": [
+								{
+									"key": "admin_id",
+									"value": null
+								},
+								{
+									"key": "keywords",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "公告管理-查询",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/admin/announcement/search?admin_id=27&keywords=罚款",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"announcement",
+										"search"
+									],
+									"query": [
+										{
+											"key": "admin_id",
+											"value": "27"
+										},
+										{
+											"key": "keywords",
+											"value": "罚款",
+											"description": "关键字查询（查 标题、内容等）"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"announcement\":[\n            {\n                \"title\":\"xxx\",\n                \"content\":\"xxx\",\n                \"createDate\":\"yyyy/mm/dd\",\n                \"publishDate\":\"yyyy/mm/dd\"\n            },\n            {\n                \"title\":\"xxx\",\n                \"content\":\"xxx\",\n                \"createDate\":\"yyyy/mm/dd\",\n                \"publishDate\":\"yyyy/mm/dd\"\n            }\n        ]\n}"
+						}
+					]
+				},
+				{
+					"name": "获取数据报表",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/admin/chart/getData?admin_id=",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"admin",
+								"chart",
+								"getData"
+							],
+							"query": [
+								{
+									"key": "admin_id",
+									"value": "",
+									"description": "管理员id"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "获取数据报表-借阅统计",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/admin/chart/getData?admin_id=27",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"chart",
+										"getData"
+									],
+									"query": [
+										{
+											"key": "admin_id",
+											"value": "27",
+											"description": "管理员id"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"code\": 200,\r\n    \"data\": {\r\n        \"total_borrowed_book\": \"7\",    //获取未归还书籍量\r\n        \"total_library_book\": \"12\",     //获取每月借阅量\r\n        \"total_share_book\": \"8\",      //获取读者分享量\r\n        \"not_return\": \"1279\"     //获取馆藏书籍量\r\n    }\r\n}"
+						}
+					]
+				},
+				{
+					"name": "获取数据报表-饼图数据",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/admin/chart/pie?admin_id",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"admin",
+								"chart",
+								"pie"
+							],
+							"query": [
+								{
+									"key": "admin_id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "获取数据报表-饼图数据",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/admin/chart/pie?admin_id=27",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"chart",
+										"pie"
+									],
+									"query": [
+										{
+											"key": "admin_id",
+											"value": "27"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    //获取成功\n    \"data\":[\n        {\"type\":\"A\",\"num\":\"3\"},//A类型书籍三本\n        {\"type\":\"B\",\"num\":\"3\"}\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "获取管理员信息",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/admin/getSetting?admin_id=33333",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"admin",
+								"getSetting"
+							],
+							"query": [
+								{
+									"key": "admin_id",
+									"value": "33333"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "获取管理员信息",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/admin/getSetting?admin_id=33333",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"getSetting"
+									],
+									"query": [
+										{
+											"key": "admin_id",
+											"value": "33333"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "资料修改",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/admin/edit?admin_id&phone&email&password&headshot",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"admin",
+								"edit"
+							],
+							"query": [
+								{
+									"key": "admin_id",
+									"value": null,
+									"description": "管理员id"
+								},
+								{
+									"key": "phone",
+									"value": null,
+									"description": "手机号"
+								},
+								{
+									"key": "email",
+									"value": null,
+									"description": "邮箱"
+								},
+								{
+									"key": "password",
+									"value": null,
+									"description": "密码"
+								},
+								{
+									"key": "headshot",
+									"value": null,
+									"description": "头像"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "资料修改",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/admin/edit?admin_id=33333&name=蔡韵雅&phone=18997942187&email=3085018791@qq.com&password=7777777&number=8209220513",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"edit"
+									],
+									"query": [
+										{
+											"key": "admin_id",
+											"value": "33333",
+											"description": "管理员id"
+										},
+										{
+											"key": "name",
+											"value": "蔡韵雅",
+											"description": "管理员名字"
+										},
+										{
+											"key": "phone",
+											"value": "18997942187",
+											"description": "电话"
+										},
+										{
+											"key": "email",
+											"value": "3085018791@qq.com",
+											"description": "邮箱"
+										},
+										{
+											"key": "password",
+											"value": "7777777",
+											"description": "密码"
+										},
+										{
+											"key": "number",
+											"value": "8209220513",
+											"description": "管理员学工号"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"code\": 200,\r\n    \"data\": \"管理员信息更新成功\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "图书管理-新增-扫码增书",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/admin/book/add/code",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"admin",
+								"book",
+								"add",
+								"code"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "图书管理-新增-扫码增书",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/admin/book/add/code",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"admin",
+										"book",
+										"add",
+										"code"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"author\": \"[美] 亚伯拉罕·西尔伯沙茨，[美] 亨利·F.科思，[印] S.苏达尔尚 著\",\n    \"book_code\": \"9787111692225\",\n    \"name\": \"数据库系统概念（本科教学版·原书第7版）\",\n    \"price\": \"89.00\",\n    \"publish_time\": \"2021-11-01\",\n    \"publisher\": \"机械工业出版社\"\n}"
+						}
+					]
+				}
+			],
+			"description": "这里写管理员端的接口"
+		},
+		{
+			"name": "登陆注册等",
+			"item": [
+				{
+					"name": "注册",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost5000/register",
+							"protocol": "https",
+							"host": [
+								"localhost5000"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "注册",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "https://localhost5000/register",
+									"protocol": "https",
+									"host": [
+										"localhost5000"
+									],
+									"path": [
+										"register"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "去登陆",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost5000/login",
+							"protocol": "https",
+							"host": [
+								"localhost5000"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "去登陆",
+							"originalRequest": {
+								"method": "GET",
+								"header": []
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"code\":200,\r\n    \"data\":\"跳转成功！\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "去注册",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost5000/register",
+							"protocol": "https",
+							"host": [
+								"localhost5000"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "去注册",
+							"originalRequest": {
+								"method": "GET",
+								"header": []
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"code\":200,\r\n    \"data\":\"跳转成功！\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "忘记密码",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost5000/register/forget",
+							"protocol": "https",
+							"host": [
+								"localhost5000"
+							],
+							"path": [
+								"register",
+								"forget"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "忘记密码",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost5000/register/forget",
+									"protocol": "https",
+									"host": [
+										"localhost5000"
+									],
+									"path": [
+										"register",
+										"forget"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"code\":200,\r\n    \"data\":\"操作成功！\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "登录",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost5000/main?reader_id&password",
+							"protocol": "https",
+							"host": [
+								"localhost5000"
+							],
+							"path": [
+								"main"
+							],
+							"query": [
+								{
+									"key": "reader_id",
+									"value": null,
+									"description": "用户名"
+								},
+								{
+									"key": "password",
+									"value": null,
+									"description": "密码"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "登录",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost5000/main?reader_id=user&password=123",
+									"protocol": "https",
+									"host": [
+										"localhost5000"
+									],
+									"path": [
+										"main"
+									],
+									"query": [
+										{
+											"key": "reader_id",
+											"value": "user",
+											"description": "用户名"
+										},
+										{
+											"key": "password",
+											"value": "123",
+											"description": "密码"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"code\":200,\r\n    \"data\":\"登录成功！\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "重置密码",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost5000/register/forget/resetpassword?reader_id&password= &new_password",
+							"protocol": "https",
+							"host": [
+								"localhost5000"
+							],
+							"path": [
+								"register",
+								"forget",
+								"resetpassword"
+							],
+							"query": [
+								{
+									"key": "reader_id",
+									"value": null,
+									"description": "账号"
+								},
+								{
+									"key": "password",
+									"value": " ",
+									"description": "密码"
+								},
+								{
+									"key": "new_password",
+									"value": null,
+									"description": "新密码"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "重置密码",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost5000/register/forget/resetpassword?reader_id&password= &new_password",
+									"protocol": "https",
+									"host": [
+										"localhost5000"
+									],
+									"path": [
+										"register",
+										"forget",
+										"resetpassword"
+									],
+									"query": [
+										{
+											"key": "reader_id",
+											"value": null,
+											"description": "账号"
+										},
+										{
+											"key": "password",
+											"value": " ",
+											"description": "密码"
+										},
+										{
+											"key": "new_password",
+											"value": null,
+											"description": "新密码"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"code\":200,\r\n    \"data\":\"操作成功！\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "QQ登录",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost5000/login/QQ",
+							"protocol": "https",
+							"host": [
+								"localhost5000"
+							],
+							"path": [
+								"login",
+								"QQ"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "微信登陆",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost5000/login/WeiXin",
+							"protocol": "https",
+							"host": [
+								"localhost5000"
+							],
+							"path": [
+								"login",
+								"WeiXin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "苹果账户登录",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost5000/login/apple",
+							"protocol": "https",
+							"host": [
+								"localhost5000"
+							],
+							"path": [
+								"login",
+								"apple"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "new获取手机验证码",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/reader/generateCode?phone",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"reader",
+								"generateCode"
+							],
+							"query": [
+								{
+									"key": "phone",
+									"value": null,
+									"description": "手机号"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "new获取手机验证码",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/reader/generateCode?phone",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"reader",
+										"generateCode"
+									],
+									"query": [
+										{
+											"key": "phone",
+											"value": null,
+											"description": "手机号"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"code\":200,\r\n    \"data\":\"发送成功\"\r\n}"
+						}
+					]
+				}
+			],
+			"description": "这里写登陆注册等的接口"
+		}
+	]
+}
