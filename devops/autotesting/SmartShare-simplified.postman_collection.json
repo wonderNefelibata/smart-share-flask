@@ -1,0 +1,109 @@
+{
+	"info": {
+		"_postman_id": "6c0b3360-8ce8-4f01-b327-3d023d98da01",
+		"name": "SmartShare-simplified",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34071583"
+	},
+	"item": [
+		{
+			"name": "ok搜索图书馆书籍 Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is within acceptable range\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response has the expected Content-Type header\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\", \"application/json\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response body is in valid XML format\", function () {\r",
+							"    const responseData = xml2Json(pm.response.text());\r",
+							"\r",
+							"    pm.expect(responseData).to.not.be.null;\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/reader/searchLibraryBooks?keywords=马克思",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"reader",
+						"searchLibraryBooks"
+					],
+					"query": [
+						{
+							"key": "keywords",
+							"value": "马克思",
+							"description": "搜索图书馆的书，发送请求关键词。"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "示例",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5000/reader/searchLibraryBooks?keywords=皇帝的新装",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"reader",
+								"searchLibraryBooks"
+							],
+							"query": [
+								{
+									"key": "keywords",
+									"value": "皇帝的新装",
+									"description": "搜索图书馆的书，发送请求关键词。"
+								}
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{//响应一个书籍的对象数组\r\n    \"code\":200,\r\n    \"data\":{\r\n        \"books\":[\r\n            {\r\n                \"img\":\"\",//书的封面\r\n                \"name\":\"皇帝的新装\",//书的名字\r\n                \"isBorrow\":false//这本书是否被“我”借阅（借阅未扫码和借阅已扫码都算借阅），已借阅-true，未借阅-false\r\n            }\r\n        ]\r\n    }\r\n\r\n}"
+				}
+			]
+		}
+	]
+}
