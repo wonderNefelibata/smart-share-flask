@@ -63,9 +63,9 @@ class BookManage():
 
                     db.session.delete(book)
                     db.session.commit()
-                    return "该书籍已删除"
+                    return "删除成功"
                 else:
-                    return "找不到指定书籍"
+                    return "找不到指定书籍，可能已经被删除了"
         else:
             return "管理员不存在，无法删除书籍"
 
@@ -74,11 +74,13 @@ class BookManage():
 
     # 改
     @staticmethod
-    def updateBook(admin_id,picture,book_name,author,publisher,publish_time,book_id,type,source,inventory,price):
+    def updateBook(admin_id,picture,book_name,author,publisher,publish_time,param_book_id,type,source,inventory,price):
         existing_adminId = Adminer.query.filter_by(adminer_id=admin_id).first()
         if existing_adminId:
-            # book = Book.query.get(type+book_id)
-            book = Book.query.filter(func.substr(Book.book_id, 2) == book_id).first()
+            print("前"+type+param_book_id)
+            book = book = Book.query.filter_by(book_id=type+param_book_id).first()
+            print("aaasda"+type+param_book_id)
+            # book = Book.query.filter(func.substr(Book.book_id, 2) == param_book_id).first()
             if book:
                 book.picture = picture
                 book.book_name = book_name

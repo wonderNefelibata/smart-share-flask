@@ -65,14 +65,21 @@ def create_app():
             return f"数据库连接失败：{e}"
 
     # 图书删除 ok
-    @app.route('/admin/book/del', methods=['GET'])
+    @app.route('/admin/book/del', methods=['GET','POST'])
     def book_del():
-        admin_id = request.args.get('admin_id')
-        type = request.args.get('type')
-        book_id = request.args.get('book_id')
+        if request.method == 'POST':
+            data = request.get_json()  # 获取 JSON 数据
+            admin_id = data.get('admin_id')
+            type = data.get('type')
+            book_id = data.get('book_id')
+        else:
+            admin_id = request.args.get('admin_id')
+            type = request.args.get('type')
+            book_id = request.args.get('book_id')
+
         del_book = BookManage.delBook(admin_id, type, book_id)
         return jsonify({"data": del_book, "code": 200})
-    
+        
 
 
     # app = Flask(__name__)
@@ -585,11 +592,11 @@ def create_app():
         book_name = request.args.get('name')
         author = request.args.get('writer')
         publisher = request.args.get('press')
-        book_id = request.args.get('code')
+        book_id = request.args.get('book_id')
         publish_time = request.args.get('date')
         type = request.args.get('type')
         source = request.args.get('source')
-        inventory = request.args.get('stock')
+        inventory = request.args.get('inventory')
         price = request.args.get('price')
         update_book = BookManage.updateBook(admin_id, picture, book_name, author, publisher, publish_time, book_id, type,
                                             source, inventory, price)

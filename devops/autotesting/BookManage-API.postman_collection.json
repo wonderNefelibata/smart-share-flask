@@ -1,0 +1,709 @@
+{
+	"info": {
+		"_postman_id": "602c4803-177f-4161-b72d-e755cfc0b317",
+		"name": "BookManage-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34071583"
+	},
+	"item": [
+		{
+			"name": "图书管理-删除图书",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// 响应状态码应该为200\r",
+							"pm.test(\"响应状态码应该为200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// 响应时间应该在可接受的范围之内\r",
+							"pm.test(\"响应时间应该在可接受的范围之内（500ms以内）\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"// 返回的数据格式应该为json\r",
+							"pm.test(\"返回的数据格式应该为json\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\", \"application/json\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// 返回的数据不能为空\r",
+							"pm.test(\"返回的数据不能为空\", function () {\r",
+							"    const responseData = xml2Json(pm.response.text());\r",
+							"\r",
+							"    pm.expect(responseData).to.not.be.null;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"返回正确的状态码\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"    var requestBody = JSON.parse(pm.request.body.raw);\r",
+							"\r",
+							"    console.log(\"参数：\",requestBody)\r",
+							"\r",
+							"    // 打印 expected_code 的值，看看实际值是什么\r",
+							"    console.log(\"expected_code:\", requestBody.expected_code);\r",
+							"\r",
+							"    pm.expect(jsonData.code).to.eql(parseInt(requestBody.expected_code));\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"返回正确的信息\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"    var requestBody = JSON.parse(pm.request.body.raw);\r",
+							"\r",
+							"    console.log(\"参数：\",requestBody)\r",
+							"\r",
+							"    // 打印 expected_code 的值，看看实际值是什么\r",
+							"    console.log(\"expected_message:\", requestBody.expected_message);\r",
+							"\r",
+							"    pm.expect(jsonData.data).to.eql(requestBody.expected_message);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"admin_id\":\"{{admin_id}}\",\r\n    \"book_id\":\"{{book_id}}\",\r\n    \"type\":\"{{type}}\",\r\n    \"expected_code\":\"{{expected_code}}\",\r\n    \"expected_message\":\"{{expected_message}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/admin/book/del",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"admin",
+						"book",
+						"del"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"admin_id\":\"{{admin_id}}\",\r\n    \"book_id\":\"{{book_id}}\",\r\n    \"type\":\"{{type}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/admin/book/del",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"admin",
+								"book",
+								"del"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.2.3 Python/3.11.4"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 29 Dec 2024 08:33:20 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "110"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"data\": \"管理员不存在，无法删除书籍\"\n}"
+				}
+			]
+		},
+		{
+			"name": "图书管理-新增",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// 响应状态码应该为200\r",
+							"pm.test(\"响应状态码应该为200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// 响应时间应该在可接受的范围之内\r",
+							"pm.test(\"响应时间应该在可接受的范围之内（500ms以内）\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"// 返回的数据格式应该为json\r",
+							"pm.test(\"返回的数据格式应该为json\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\", \"application/json\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// 返回的数据不能为空\r",
+							"pm.test(\"返回的数据不能为空\", function () {\r",
+							"    const responseData = xml2Json(pm.response.text());\r",
+							"\r",
+							"    pm.expect(responseData).to.not.be.null;\r",
+							"});\r",
+							"\r",
+							"// 返回的结果中状态码code应该为200\r",
+							"pm.test(\"返回的结果中状态码code应该为200\", function () {\r",
+							"    pm.expect(pm.response.json().code).to.equal(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/admin/book/add?admin_id=27&picture=B-7&name=论自由&writer=斯图亚特·密尔&press=商务印刷馆&code=9787100103163&date=2009-01-01&type=B&stock=3&price=40.00",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"admin",
+						"book",
+						"add"
+					],
+					"query": [
+						{
+							"key": "admin_id",
+							"value": "27",
+							"description": "管理员id"
+						},
+						{
+							"key": "picture",
+							"value": "B-7",
+							"description": "图书封面"
+						},
+						{
+							"key": "name",
+							"value": "论自由",
+							"description": "图书名字"
+						},
+						{
+							"key": "writer",
+							"value": "斯图亚特·密尔",
+							"description": "作者"
+						},
+						{
+							"key": "press",
+							"value": "商务印刷馆",
+							"description": "出版社"
+						},
+						{
+							"key": "code",
+							"value": "9787100103163",
+							"description": "条形码"
+						},
+						{
+							"key": "date",
+							"value": "2009-01-01",
+							"description": "出版日期"
+						},
+						{
+							"key": "type",
+							"value": "B",
+							"description": "类型"
+						},
+						{
+							"key": "stock",
+							"value": "3",
+							"description": "库存"
+						},
+						{
+							"key": "price",
+							"value": "40.00",
+							"description": "价格"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取图书列表",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// 响应状态码应该为200\r",
+							"pm.test(\"响应状态码应该为200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// 响应时间应该在可接受的范围之内\r",
+							"pm.test(\"响应时间应该在可接受的范围之内（500ms以内）\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"// 返回的数据格式应该为json\r",
+							"pm.test(\"返回的数据格式应该为json\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\", \"application/json\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// 返回的数据不能为空\r",
+							"pm.test(\"返回的数据不能为空\", function () {\r",
+							"    const responseData = xml2Json(pm.response.text());\r",
+							"\r",
+							"    pm.expect(responseData).to.not.be.null;\r",
+							"});\r",
+							"\r",
+							"// 返回的结果中状态码code应该为200\r",
+							"pm.test(\"返回的结果中状态码code应该为200\", function () {\r",
+							"    pm.expect(pm.response.json().code).to.equal(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/admin/getBook",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"admin",
+						"getBook"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "获取图书列表",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost5000/admin/getBook",
+							"protocol": "https",
+							"host": [
+								"localhost5000"
+							],
+							"path": [
+								"admin",
+								"getBook"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"book\": [\n        {\n            \"name\": \"xxx\",\n            \"writer\": \"xxx\",\n            \"press\": \"xx出版社\",\n            \"publishDate\": \"yyyy/mm/dd\",\n            \"code\":\"/src/xxx.jpg\",\n            \"type\":\"fiction\",\n            \"source\":\"xxxx\",\n            \"stock\":\"xx本\"\n        },\n        {\n            \"name\": \"xxx\",\n            \"writer\": \"xxx\",\n            \"press\": \"xx出版社\",\n            \"publishDate\": \"yyyy/mm/dd\",\n            \"code\":\"/src/xxx.jpg\",\n            \"type\":\"fiction\",\n            \"source\":\"xxxx\",\n            \"stock\":\"xx本\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "图书管理-编辑-保存",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// 响应状态码应该为200\r",
+							"pm.test(\"响应状态码应该为200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// 响应时间应该在可接受的范围之内\r",
+							"pm.test(\"响应时间应该在可接受的范围之内（500ms以内）\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"// 返回的数据格式应该为json\r",
+							"pm.test(\"返回的数据格式应该为json\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\", \"application/json\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// 返回的数据不能为空\r",
+							"pm.test(\"返回的数据不能为空\", function () {\r",
+							"    const responseData = xml2Json(pm.response.text());\r",
+							"\r",
+							"    pm.expect(responseData).to.not.be.null;\r",
+							"});\r",
+							"\r",
+							"// 返回的结果中状态码code应该为200\r",
+							"pm.test(\"返回的结果中状态码code应该为200\", function () {\r",
+							"    pm.expect(pm.response.json().code).to.equal(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/admin/book/edit?admin_id=27&book_id=9787518807033&name=王昱凯自传&press=csu&writer=wyk&date=2007-02-09&code=9787518807033&type=J&source=person&inventory=12&picture=dnjksnkkd&price=222",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"admin",
+						"book",
+						"edit"
+					],
+					"query": [
+						{
+							"key": "admin_id",
+							"value": "27",
+							"description": "管理员id"
+						},
+						{
+							"key": "book_id",
+							"value": "9787518807033",
+							"description": "书本id"
+						},
+						{
+							"key": "name",
+							"value": "王昱凯自传",
+							"description": "书本名称"
+						},
+						{
+							"key": "press",
+							"value": "csu",
+							"description": "出版社"
+						},
+						{
+							"key": "writer",
+							"value": "wyk",
+							"description": "作者"
+						},
+						{
+							"key": "date",
+							"value": "2007-02-09",
+							"description": "出版日期"
+						},
+						{
+							"key": "code",
+							"value": "9787518807033",
+							"description": "条形码"
+						},
+						{
+							"key": "type",
+							"value": "J",
+							"description": "类型"
+						},
+						{
+							"key": "source",
+							"value": "person",
+							"description": "书籍来源"
+						},
+						{
+							"key": "inventory",
+							"value": "12",
+							"description": "库存"
+						},
+						{
+							"key": "picture",
+							"value": "dnjksnkkd"
+						},
+						{
+							"key": "price",
+							"value": "222"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "图书管理-编辑-保存",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/admin/book/edit?admin_id=27&picture=C-22&name=你&writer=韵&press=悦&code=7777777777777&date=2004-4-14&type=C&source=图书馆&stock=1&price=35",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"admin",
+								"book",
+								"edit"
+							],
+							"query": [
+								{
+									"key": "admin_id",
+									"value": "27",
+									"description": "管理员id"
+								},
+								{
+									"key": "picture",
+									"value": "C-22",
+									"description": "书籍封面"
+								},
+								{
+									"key": "name",
+									"value": "你",
+									"description": "书本名称"
+								},
+								{
+									"key": "writer",
+									"value": "韵",
+									"description": "作者"
+								},
+								{
+									"key": "press",
+									"value": "悦",
+									"description": "出版社"
+								},
+								{
+									"key": "code",
+									"value": "7777777777777",
+									"description": "条形码"
+								},
+								{
+									"key": "date",
+									"value": "2004-4-14",
+									"description": "出版日期"
+								},
+								{
+									"key": "type",
+									"value": "C",
+									"description": "类型"
+								},
+								{
+									"key": "source",
+									"value": "图书馆",
+									"description": "书籍来源"
+								},
+								{
+									"key": "stock",
+									"value": "1",
+									"description": "库存"
+								},
+								{
+									"key": "price",
+									"value": "35",
+									"description": "书籍价格"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"code\":200,\r\n    \"data\":\"操作成功！\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "图书管理-查询",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// 响应状态码应该为200\r",
+							"pm.test(\"响应状态码应该为200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// 响应时间应该在可接受的范围之内\r",
+							"pm.test(\"响应时间应该在可接受的范围之内（500ms以内）\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"// 返回的数据格式应该为json\r",
+							"pm.test(\"返回的数据格式应该为json\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\", \"application/json\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// 返回的数据不能为空\r",
+							"pm.test(\"返回的数据不能为空\", function () {\r",
+							"    const responseData = xml2Json(pm.response.text());\r",
+							"\r",
+							"    pm.expect(responseData).to.not.be.null;\r",
+							"});\r",
+							"\r",
+							"// 返回的结果中状态码code应该为200\r",
+							"pm.test(\"返回的结果中状态码code应该为200\", function () {\r",
+							"    pm.expect(pm.response.json().code).to.equal(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/admin/book/search?admin_id=27&keywords=毛泽东",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"admin",
+						"book",
+						"search"
+					],
+					"query": [
+						{
+							"key": "admin_id",
+							"value": "27"
+						},
+						{
+							"key": "keywords",
+							"value": "毛泽东"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "图书管理-查询",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/admin/book/search?admin_id&keywords",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"admin",
+								"book",
+								"search"
+							],
+							"query": [
+								{
+									"key": "admin_id",
+									"value": null
+								},
+								{
+									"key": "keywords",
+									"value": null
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"book\": [\n        {\n            \"name\": \"xxx\",\n            \"writer\": \"xxx\",\n            \"press\": \"xx出版社\",\n            \"publishDate\": \"yyyy/mm/dd\",\n            \"code\": \"/src/xxx.jpg\",\n            \"type\": \"fiction\",\n            \"source\": \"xxxx\",\n            \"stock\": \"xx本\"\n        },\n        {\n            \"name\": \"xxx\",\n            \"writer\": \"xxx\",\n            \"press\": \"xx出版社\",\n            \"publishDate\": \"yyyy/mm/dd\",\n            \"code\": \"/src/xxx.jpg\",\n            \"type\": \"fiction\",\n            \"source\": \"xxxx\",\n            \"stock\": \"xx本\"\n        }\n    ]\n}"
+				}
+			]
+		}
+	]
+}

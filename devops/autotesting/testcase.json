@@ -1,0 +1,6 @@
+[
+    { "admin_id": "27", "book_id": "978-7-806-27114-8", "type": "J", "expected_code": 200, "expected_message": "删除成功" },
+    { "admin_id": "27", "book_id": "9787100103187", "type": "B", "expected_code": 200, "expected_message": "该书籍借阅中无法删除" },
+    { "admin_id": "27", "book_id": "123", "type": "E", "expected_code": 200, "expected_message": "找不到指定书籍，可能已经被删除了" },
+    { "admin_id": "127", "book_id": "9787100103187", "type": "B", "expected_code": 200, "expected_message": "管理员不存在，无法删除书籍" }
+]
